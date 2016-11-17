@@ -74,8 +74,16 @@ gulp.task('scripts', () => {
 
 gulp.task('hbs', () => {
   return gulp.src('./src/hbs/*.html')
-    .pipe($.plumber())
-    .pipe($.frontMatter())
+    .pipe($.plumber({
+      errorHandler(err) {
+        console.log(err); // eslint-disable-line no-console
+        this.emit('end');
+      }
+    }))
+    .pipe($.frontMatter({
+      property: 'data',
+      remove: true
+    }))
     .pipe($.hb({
       bustCache: true,
       debug: true,
@@ -110,7 +118,7 @@ gulp.task('html', ['hbs', 'styles', 'scripts'], () => {
 });
 
 gulp.task('images', () => {
-  return gulp.src('./src/images/**/*')
+  return gulp.src('./src/images/**/*.{png,jpg,jpeg,gif,svg}')
     .pipe($.plumber())
     .pipe($.if($.if.isFile, $.cache($.imagemin({
       progressive: true,
@@ -155,6 +163,10 @@ gulp.task('serve', ['clean', 'hbs', 'styles', 'lint', 'scripts'], () => {
     port: 9000,
     server: {
       baseDir: './dist',
+      routes: {
+        '/images': 'src/images',
+        '/fonts': 'src/fonts'
+      },
       directory: true
     }
   });
@@ -172,11 +184,7 @@ gulp.task('serve', ['clean', 'hbs', 'styles', 'lint', 'scripts'], () => {
     gulp.start('styles');
   });
 
-  gulp.watch([
-    './src/*.html',
-    './src/js/*.js',
-    './src/images/**/*',
-  ]).on('change', reload);
+  gulp.watch('./src/images/**/**.{png,jpg,jpeg,gif,svg}').on('change', reload);
 });
 
 gulp.task('test', () => {
