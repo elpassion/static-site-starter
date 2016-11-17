@@ -1,0 +1,40 @@
+//=======================
+// Media queries
+//=======================
+
+$xs: 480px;
+$sm: 768px;
+$md: 992px;
+$lg: 1200px;
+
+$grid-gutter: 30px;
+$grid-columns: 12;
+
+$container-sm: 720px;
+$container-md: 940px;
+$container-lg: 1140px;
+
+$screen-xs: 'only screen and (min-width: 1px)';
+$screen-sm: 'only screen and (min-width: #{$sm})';
+$screen-md: 'only screen and (min-width: #{$md})';
+$screen-lg: 'only screen and (min-width: #{$lg})';
+
+$screen-only-xs: 'only screen and (max-width: #{$xs - 1})';
+$screen-only-sm: 'only screen and (min-width: #{$xs}) and (max-width: #{$md - 1})';
+$screen-only-md: 'only screen and (min-width: #{$md}) and (max-width: #{$lg - 1})';
+$screen-only-lg: 'only screen and (min-width: #{$lg})';
+
+//=======================
+// Typography
+//=======================
+
+// HTML base font size is 16px
+$base-font-size: 16px;
+$base-font-family: Arial, sans-serif;
+
+//=======================
+// Misc
+//=======================
+
+$duration: .2s;
+
