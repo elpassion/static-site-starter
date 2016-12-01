@@ -224,6 +224,6 @@ gulp.task('build', ['clean', 'lint', 'html', 'fonts', 'extras', 'images'], () =>
   }));
 });
 
-gulp.task('default', ['clean'], () => {
+gulp.task('default', () => {
   gulp.start('serve');
 });
