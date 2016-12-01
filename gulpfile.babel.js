@@ -94,19 +94,23 @@ gulp.task('hbs', () => {
       property: 'data',
       remove: true
     }))
-    .pipe($.hb({
-      bustCache: true,
-      debug: true,
-      partials: './src/hbs/partials/**/*.hbs',
-      helpers: [
-        './src/hbs/helpers/repeat.js',
-        './node_modules/handlebars-helpers/lib/helpers/helpers-files.js',
-        './node_modules/handlebars-helpers/lib/helpers/helpers-comparisons.js',
-        './node_modules/handlebars-helpers/lib/helpers/helpers-collections.js',
-        './node_modules/handlebars-helpers/lib/helpers/helpers-strings.js',
-        './node_modules/handlebars-helpers/lib/helpers/helpers-math.js',
-      ]
-    }))
+    .pipe(
+      $.hb({
+        bustCache: true,
+        debug: true,
+        helpers: [
+          './src/hbs/helpers/repeat.js',
+          './node_modules/handlebars-helpers/lib/helpers/helpers-files.js',
+          './node_modules/handlebars-helpers/lib/helpers/helpers-comparisons.js',
+          './node_modules/handlebars-helpers/lib/helpers/helpers-collections.js',
+          './node_modules/handlebars-helpers/lib/helpers/helpers-strings.js',
+          './node_modules/handlebars-helpers/lib/helpers/helpers-math.js',
+          './node_modules/handlebars-layouts'
+        ]
+      })
+      .partials('./src/hbs/layouts/*.hbs')
+      .partials('./src/hbs/partials/**/*.hbs')
+    )
     .pipe(gulp.dest('./dist'))
     .pipe(reload({
       stream: true
@@ -181,7 +185,11 @@ gulp.task('serve', ['clean', 'hbs', 'styles', 'lint', 'scripts'], () => {
     }
   });
 
-  $.watch(['./src/hbs/partials/**/*.hbs', './src/hbs/*.html'], () => {
+  $.watch([
+    './src/hbs/partials/**/*.hbs',
+    './src/hbs/layouts/*.hbs',
+    './src/hbs/*.html'
+  ], () => {
     gulp.start('hbs');
   });
 

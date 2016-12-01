@@ -2,10 +2,12 @@
 title: 'Home'
 ---
 
-{{> header}}
+{{#extend "base"}}
+  {{#content "main"}}
 
-<div class="container">
-  <h1>Hello World!</h1>
-</div>
+    <div class="container">
+      <h1>Hello World!</h1>
+    </div>
 
-{{> footer}}
+ {{/content}}
+{{/extend}}

@@ -1,6 +1,5 @@
 {
   "name": "static-site-starter",
-  "private": true,
   "engines": {
     "npm": ">=3"
   },
@@ -39,6 +38,7 @@
     "gulp-watch": "^4.3.10",
     "handlebars-helper-repeat": "^0.3.1",
     "handlebars-helpers": "^0.7.5",
+    "handlebars-layouts": "^3.1.4",
     "opn": "^4.0.2",
     "rollupify": "^0.3.5",
     "sass-module-importer": "^1.4.0",
