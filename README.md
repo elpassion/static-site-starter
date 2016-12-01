@@ -20,12 +20,12 @@ You will need the following things properly installed on your computer.
 * `npm install`
 
 ## Running / Development
-* `gulp` or `gulp serve` to serve templates
+* `npm start` or `npm run start` to serve templates
 * Visit your app at [http://localhost:9000](http://localhost:9000).
 
 ### Building
-* `gulp build` to build templates
+* `npm run build` to build templates
 
 ## Testing
-* `gulp test` to run tests once
-* `gulp test:watch` to run tests in watch mode
+* `npm run test` to run tests once
+* `npm run test:watch` to run tests in watch mode
