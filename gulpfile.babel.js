@@ -3,6 +3,11 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
 import sassModuleImporter from 'sass-module-importer';
+import browserify from 'browserify';
+import babelify from 'babelify';
+import rollupify from 'rollupify';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -52,18 +57,23 @@ gulp.task('lint', lint('./src/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js'));
 
 gulp.task('scripts', () => {
-  return gulp.src('./src/scripts/**/*.js')
+  return browserify({
+    entries: './src/scripts/main.js',
+    debug: true,
+  })
+    .transform(babelify, {
+      presets: ['es2015', 'stage-0']
+    })
+    .transform(rollupify)
+    .bundle()
+    .on('error', $.notify.onError({
+      title: 'Failed running browserify',
+      message: 'Error: <%= error.message %>'
+    }))
+    .pipe(source('main.js'))
+    .pipe(buffer())
     .pipe($.sourcemaps.init({
       loadMaps: true
-    }))
-    .pipe($.babel({
-      presets: ['es2015', 'stage-0']
-    }))
-    .pipe($.plumber({
-      errorHandler(err) {
-        console.log(err); // eslint-disable-line no-console
-        this.emit('end');
-      }
     }))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('./dist/js'))

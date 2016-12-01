@@ -9,7 +9,9 @@
     "babel-eslint": "^6.1.2",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-stage-0": "^6.16.0",
+    "babelify": "^7.3.0",
     "browser-sync": "^2.18.1",
+    "browserify": "^13.1.1",
     "chai": "^3.5.0",
     "del": "^2.2.2",
     "eslint": "^3.10.2",
@@ -17,7 +19,6 @@
     "eslint-plugin-import": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
-    "gulp-babel": "^6.1.2",
     "gulp-cache": "^0.4.5",
     "gulp-clean-css": "^2.0.13",
     "gulp-eslint": "^3.0.1",
@@ -28,6 +29,7 @@
     "gulp-imagemin": "^3.1.1",
     "gulp-load-plugins": "^1.4.0",
     "gulp-mocha": "^3.0.1",
+    "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-size": "^2.1.0",
@@ -38,7 +40,10 @@
     "handlebars-helper-repeat": "^0.3.1",
     "handlebars-helpers": "^0.7.5",
     "opn": "^4.0.2",
-    "sass-module-importer": "^1.4.0"
+    "rollupify": "^0.3.5",
+    "sass-module-importer": "^1.4.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
     "sanitize.css": "^4.1.0"
