@@ -20,7 +20,6 @@ You will need the following things properly installed on your computer.
 * `npm install`
 
 ## Running / Development
-
 * `gulp` or `gulp serve` to serve templates
 * Visit your app at [http://localhost:9000](http://localhost:9000).
 

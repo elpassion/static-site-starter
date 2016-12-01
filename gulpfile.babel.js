@@ -104,15 +104,15 @@ gulp.task('hbs', () => {
 });
 
 gulp.task('html', ['hbs', 'styles', 'scripts'], () => {
-  return gulp.src('./src/*.html')
+  return gulp.src('./dist/*.html')
     .pipe($.useref())
     .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.minifyCss({
+    .pipe($.if('*.css', $.cleanCss({
       compatibility: '*'
     })))
-    .pipe($.if('*.html', $.minifyHtml({
-      conditionals: true,
-      loose: true
+    .pipe($.if('*.html', $.htmlmin({
+      collapseWhitespace: true,
+      conditionals: true
     })))
     .pipe(gulp.dest('./dist'));
 });
