@@ -31,7 +31,7 @@ function lint(files) {
   };
 }
 
-gulp.task('styles', () => {
+gulp.task('styles', ['styles:lint'], () => {
   return gulp.src('./src/styles/**/*.scss')
     .pipe($.plumber({
       errorHandler(err) {
@@ -50,6 +50,16 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('./dist/css'))
     .pipe(reload({
       stream: true
+    }));
+});
+
+gulp.task('styles:lint', () => {
+  return gulp.src('./src/styles/**/*.scss')
+    .pipe($.stylelint({
+      reporters: [{
+        formatter: 'string',
+        console: true
+      }]
     }));
 });
 

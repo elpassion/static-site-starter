@@ -54,11 +54,11 @@
 }
 
 @mixin column($size) {
+  float: left;
   width: ($size * 100% / $grid-columns);
   min-height: 1px;
   padding-right: $grid-gutter / 2;
   padding-left: $grid-gutter / 2;
-  float: left;
 }
 
 @mixin column-no-float($size) {
@@ -129,9 +129,9 @@
 }
 
 %col {
+  float: left;
   padding-right: $grid-gutter / 2;
   padding-left: $grid-gutter / 2;
-  float: left;
 }
 
 %container-fluid {
