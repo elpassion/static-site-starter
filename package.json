@@ -42,6 +42,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^2.2.0",
+    "gulp-stylelint": "^3.7.0",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",
     "gulp-watch": "^4.3.10",
@@ -51,6 +52,10 @@
     "opn": "^4.0.2",
     "rollupify": "^0.3.5",
     "sass-module-importer": "^1.4.0",
+    "stylelint": "^7.8.0",
+    "stylelint-config-standard": "^16.0.0",
+    "stylelint-order": "^0.2.2",
+    "stylelint-scss": "^1.4.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
