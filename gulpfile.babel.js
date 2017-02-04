@@ -100,11 +100,11 @@ gulp.task('hbs', () => {
         debug: true,
         helpers: [
           './src/hbs/helpers/repeat.js',
-          './node_modules/handlebars-helpers/lib/helpers/helpers-files.js',
-          './node_modules/handlebars-helpers/lib/helpers/helpers-comparisons.js',
-          './node_modules/handlebars-helpers/lib/helpers/helpers-collections.js',
-          './node_modules/handlebars-helpers/lib/helpers/helpers-strings.js',
-          './node_modules/handlebars-helpers/lib/helpers/helpers-math.js',
+          './node_modules/handlebars-helpers/lib/fs.js',
+          './node_modules/handlebars-helpers/lib/comparison.js',
+          './node_modules/handlebars-helpers/lib/collection.js',
+          './node_modules/handlebars-helpers/lib/string.js',
+          './node_modules/handlebars-helpers/lib/math.js',
           './node_modules/handlebars-layouts'
         ]
       })
