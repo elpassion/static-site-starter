@@ -12,6 +12,10 @@ import buffer from 'vinyl-buffer';
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
+const packageJSON = require('./package.json');
+const dependenciesObject = (packageJSON && packageJSON.dependencies) || {};
+const vendorDeps = Object.keys(dependenciesObject).filter(name => !/\.s?css|\.sass/.test(name));
+
 function lint(files) {
   return () => {
     return gulp.src(files)
@@ -66,14 +70,13 @@ gulp.task('styles:lint', () => {
 gulp.task('lint', lint('./src/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js'));
 
-gulp.task('scripts', () => {
+gulp.task('scripts', ['scripts:vendor'], () => {
   return browserify({
     entries: './src/scripts/main.js',
     debug: true,
   })
-    .transform(babelify, {
-      presets: ['es2015', 'stage-0']
-    })
+    .external(vendorDeps)
+    .transform(babelify)
     .transform(rollupify)
     .bundle()
     .on('error', $.notify.onError({
@@ -91,6 +94,23 @@ gulp.task('scripts', () => {
       stream: true
     }));
 });
+
+gulp.task('scripts:vendor', () => (
+  browserify()
+    .require(vendorDeps)
+    .transform(rollupify)
+    .bundle()
+    .on('error', $.notify.onError({
+      title: 'Failed running browserify',
+      message: 'Error: <%= error.message %>'
+    }))
+    .pipe(source('vendor.js'))
+    .pipe(buffer())
+    .pipe(gulp.dest('./dist/js'))
+    .pipe(reload({
+      stream: true
+    }))
+));
 
 gulp.task('hbs', () => {
   return gulp.src('./src/hbs/*.html')
