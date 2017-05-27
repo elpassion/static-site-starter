@@ -113,7 +113,7 @@ gulp.task('scripts:vendor', () => (
 ));
 
 gulp.task('hbs', () => {
-  return gulp.src('./src/hbs/*.html')
+  return gulp.src('./src/hbs/*.hbs')
     .pipe($.plumber({
       errorHandler(err) {
         console.log(err); // eslint-disable-line no-console
@@ -127,7 +127,6 @@ gulp.task('hbs', () => {
     .pipe(
       $.hb({
         bustCache: true,
-        debug: true,
         helpers: [
           './src/hbs/helpers/repeat.js',
           './node_modules/handlebars-helpers/lib/fs.js',
@@ -141,6 +140,9 @@ gulp.task('hbs', () => {
       .partials('./src/hbs/layouts/*.hbs')
       .partials('./src/hbs/partials/**/*.hbs')
     )
+    .pipe($.rename({
+      extname: '.html',
+    }))
     .pipe(gulp.dest('./dist'))
     .pipe(reload({
       stream: true
