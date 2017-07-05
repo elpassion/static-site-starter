@@ -25,10 +25,6 @@ function lint(files) {
           this.emit('end');
         }
       }))
-      .pipe(reload({
-        stream: true,
-        once: true
-      }))
       .pipe($.eslint())
       .pipe($.eslint.format())
       .pipe($.if(!browserSync.active, $.eslint.failAfterError()));
@@ -91,7 +87,8 @@ gulp.task('scripts', ['scripts:vendor'], () => {
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('./dist/js'))
     .pipe(reload({
-      stream: true
+      stream: true,
+      once: true
     }));
 });
 
@@ -107,9 +104,6 @@ gulp.task('scripts:vendor', () => (
     .pipe(source('vendor.js'))
     .pipe(buffer())
     .pipe(gulp.dest('./dist/js'))
-    .pipe(reload({
-      stream: true
-    }))
 ));
 
 gulp.task('hbs', () => {
@@ -145,7 +139,8 @@ gulp.task('hbs', () => {
     }))
     .pipe(gulp.dest('./dist'))
     .pipe(reload({
-      stream: true
+      stream: true,
+      once: true
     }));
 });
 
